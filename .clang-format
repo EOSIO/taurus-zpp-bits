@@ -1,0 +1,138 @@
+# .clang-format inferred with clang-unformat (https://www.github.com/alandefreitas/clang-unformat)
+Language: Cpp                                      # single option
+BasedOnStyle: WebKit                               # edit distance 11865
+AccessModifierOffset: -4                           # edit distance 11865
+AlignAfterOpenBracket: Align                       # edit distance 9938
+AlignArrayOfStructures: None                       # edit distance 9938
+AlignConsecutiveAssignments: None                  # edit distance 9938
+AlignConsecutiveBitFields: None                    # inherited from prefix Align
+AlignConsecutiveDeclarations: None                 # edit distance 9938
+AlignConsecutiveMacros: None                       # edit distance 9938
+AlignEscapedNewlines: Right                        # Using default value Right
+AlignOperands: DontAlign                           # edit distance 9938
+AlignTrailingComments: true                        # did not affect the output
+AllowAllArgumentsOnNextLine: true                  # did not affect the output
+AllowAllParametersOfDeclarationOnNextLine: true    # did not affect the output
+AllowShortBlocksOnASingleLine: Never               # Using default value Never
+AllowShortCaseLabelsOnASingleLine: true            # did not affect the output
+AllowShortEnumsOnASingleLine: true                 # did not affect the output
+AllowShortFunctionsOnASingleLine: None             # Using default value None
+AllowShortIfStatementsOnASingleLine: Never         # Using default value Never
+AllowShortLambdasOnASingleLine: All                # edit distance 9938
+AllowShortLoopsOnASingleLine: true                 # did not affect the output
+AlwaysBreakAfterDefinitionReturnType: None         # edit distance 9938
+AlwaysBreakAfterReturnType: None                   # edit distance 9938
+AlwaysBreakBeforeMultilineStrings: true            # did not affect the output
+AlwaysBreakTemplateDeclarations: Yes               # Using default value Yes
+BinPackArguments: true                             # edit distance 9938
+BinPackParameters: true                            # did not affect the output
+BitFieldColonSpacing: Both                         # did not affect the output
+BreakBeforeBraces: Custom                          # edit distance 9899
+BraceWrapping:
+  AfterCaseLabel: false                            # inherited from prefix BraceWrapping
+  AfterClass: false                                # edit distance 10696
+  AfterControlStatement: MultiLine                 # edit distance 10688
+  AfterEnum: true                                  # edit distance 10682
+  AfterFunction: true                              # edit distance 9924
+  AfterNamespace: true                             # edit distance 9921
+  AfterObjCDeclaration: false                      # inherited from prefix BraceWrapping
+  AfterStruct: true                                # edit distance 9904
+  AfterUnion: true                                 # edit distance 9900
+  AfterExternBlock: false                          # inherited from prefix BraceWrapping
+  BeforeCatch: false                               # inherited from prefix BraceWrapping
+  BeforeElse: false                                # edit distance 9900
+  BeforeLambdaBody: false                          # edit distance 9900
+  BeforeWhile: false                               # edit distance 9900
+  IndentBraces: false                              # edit distance 9900
+  SplitEmptyFunction: false                        # inherited from prefix BraceWrapping
+  SplitEmptyRecord: false                          # edit distance 9892
+  SplitEmptyNamespace: false                       # inherited from prefix BraceWrapping
+BreakAfterJavaFieldAnnotations: true               # did not affect the output
+BreakBeforeBinaryOperators: None                   # edit distance 5261
+BreakBeforeConceptDeclarations: true               # inherited from prefix BreakBefore
+BreakBeforeTernaryOperators: true                  # edit distance 5261
+BreakConstructorInitializers: AfterColon           # edit distance 5179
+BreakInheritanceList: BeforeColon                  # did not affect the output
+BreakStringLiterals: true                          # did not affect the output
+# ColumnLimit: 80                                    # edit distance 13894
+CompactNamespaces: true                            # did not affect the output
+ConstructorInitializerIndentWidth: 4               # edit distance 13894
+ContinuationIndentWidth: 4                         # edit distance 13894
+Cpp11BracedListStyle: true                         # edit distance 13413
+DeriveLineEnding: true                             # inherited from prefix Derive
+DerivePointerAlignment: true                       # edit distance 13271
+EmptyLineAfterAccessModifier: Never                # edit distance 13271
+EmptyLineBeforeAccessModifier: Leave               # edit distance 13271
+ExperimentalAutoDetectBinPacking: true             # edit distance 12026
+FixNamespaceComments: true                         # did not affect the output
+IncludeBlocks: Preserve                            # did not affect the output
+IndentAccessModifiers: false                       # edit distance 12026
+IndentCaseBlocks: false                            # inherited from prefix Indent
+IndentCaseLabels: false                            # inherited from prefix Indent
+IndentExternBlock: AfterExternBlock                # did not affect the output
+IndentGotoLabels: false                            # inherited from prefix Indent
+IndentPPDirectives: None                           # edit distance 12026
+IndentRequires: false                              # edit distance 12026
+IndentWidth: 4                                     # edit distance 12026
+IndentWrappedFunctionNames: false                  # edit distance 12026
+InsertTrailingCommas: None                         # did not affect the output
+KeepEmptyLinesAtTheStartOfBlocks: true             # did not affect the output
+LambdaBodyIndentation: Signature                   # edit distance 12026
+MaxEmptyLinesToKeep: 2                             # edit distance 12025
+NamespaceIndentation: None                         # edit distance 9552
+PackConstructorInitializers: Never                 # edit distance 9484
+PenaltyBreakAssignment: 8                          # edit distance 9420
+PenaltyBreakBeforeFirstCallParameter: 2            # edit distance 9420
+PenaltyBreakComment: 2                             # inherited from prefix PenaltyBreak
+PenaltyBreakFirstLessLess: 2                       # inherited from prefix PenaltyBreak
+# PenaltyBreakOpenParenthesis: 32                    # edit distance 12249
+PenaltyBreakString: 2                              # inherited from prefix PenaltyBreak
+PenaltyBreakTemplateDeclaration: 2                 # edit distance 12135
+PenaltyExcessCharacter: 512                        # edit distance 12135
+# PenaltyIndentedWhitespace: 2                       # edit distance 13448
+PenaltyReturnTypeOnItsOwnLine: 4                   # edit distance 13436
+PointerAlignment: Left                             # did not affect the output
+QualifierAlignment: Leave                          # edit distance 13436
+ReferenceAlignment: Middle                        # did not affect the output
+RemoveBracesLLVM: false                            # edit distance 13436
+ReflowComments: true                               # did not affect the output
+# RequiresClausePosition: OwnLine                  # parameter not available
+SeparateDefinitionBlocks: Leave                    # edit distance 13436
+ShortNamespaceLines: 0                             # did not affect the output
+SortIncludes: Never                                # did not affect the output
+SortUsingDeclarations: false                       # edit distance 13391
+SpaceAfterCStyleCast: true                         # edit distance 13353
+SpaceAfterLogicalNot: false                        # edit distance 13353
+SpaceAfterTemplateKeyword: true                    # edit distance 13353
+SpaceAroundPointerQualifiers: Default              # did not affect the output
+SpaceBeforeAssignmentOperators: true               # edit distance 13353
+SpaceBeforeCaseColon: false                        # inherited from prefix SpaceBefore
+SpaceBeforeCpp11BracedList: false                  # edit distance 13094
+SpaceBeforeCtorInitializerColon: true              # edit distance 13094
+SpaceBeforeInheritanceColon: true                  # edit distance 13094
+SpaceBeforeParens: Custom                          # edit distance 13094
+SpaceBeforeParensOptions:
+  AfterControlStatements: true                     # edit distance 13094
+  AfterForeachMacros: false                        # inherited from prefix SpaceBefore
+  AfterFunctionDeclarationName: false              # edit distance 13094
+  AfterFunctionDeclarationName: false              # edit distance 13094
+  AfterFunctionDefinitionName: false               # edit distance 13094
+  AfterIfMacros: false                             # inherited from prefix SpaceBefore
+  AfterOverloadedOperator: false                   # edit distance 13094
+  # AfterRequiresInClause: false                     # inherited from prefix SpaceBefore
+  # AfterRequiresInExpression: false                 # inherited from prefix SpaceBefore
+  # BeforeNonEmptyParentheses: false                 # edit distance 13094
+SpaceBeforeRangeBasedForLoopColon: true            # edit distance 13094
+SpaceBeforeSquareBrackets: false                   # edit distance 13094
+SpaceInEmptyBlock: false                           # edit distance 13093
+SpaceInEmptyParentheses: false                     # edit distance 13093
+SpacesBeforeTrailingComments: 1                    # edit distance 13093
+SpacesInAngles: Leave                              # edit distance 12923
+SpacesInCStyleCastParentheses: true                # edit distance 12892
+SpacesInConditionalStatement: false                # edit distance 12892
+SpacesInContainerLiterals: true                    # did not affect the output
+SpacesInParentheses: false                         # edit distance 12892
+Standard: c++20                                    # edit distance 12892
+TabWidth: 0                                        # did not affect the output
+UseCRLF: true                                      # did not affect the output
+UseTab: Never                                      # edit distance 12892

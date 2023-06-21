@@ -1,0 +1,6 @@
+
+.vscode
+test/obj
+test/out
+test/compile_commands.json
+build
