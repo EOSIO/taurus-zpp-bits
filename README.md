@@ -1102,14 +1102,10 @@ struct example
     // next field is implicitly 2, and so on
 };
 
-// Serialize as protobuf protocol (as usual, can also define this inside the class
-// with `using serialize = zpp::bits::pb_protocol;`)
-auto serialize(const example &) -> zpp::bits::pb_protocol;
-
-// Use archives as usual, specify what kind of size to prefix the message with.
+// Create archives with protobuf, specify what kind of size to prefix the message with.
 // We chose no size to demonstrate the actual encoding of the message, but in general
 // it is recommended to size prefix protobuf messages since they are not self terminating.
-auto [data, in, out] = data_in_out(zpp::bits::no_size{});
+auto [data, in, out] = data_in_out(zpp::bits::no_size{}, protobuf{});
 
 out(example{.i = 150}).or_throw();
 
@@ -1120,15 +1116,8 @@ in(e).or_throw();
 
 // Serialize the message without any size prefix, and check the encoding at compile time:
 static_assert(
-    zpp::bits::to_bytes<zpp::bits::unsized_t<example>{{.i = 150}}>() ==
+    zpp::bits::to_bytes<zpp::bits::protobuf{}, zpp::bits::unsized_t<example>{{.i = 150}}>() ==
     "089601"_decode_hex);
-```
-
-For the full syntax, which we'll later use to pass more options, use `zpp::bits::protocol`:
-```cpp
-// Serialize as protobuf protocol (as usual, can also define this inside the class
-// with `using serialize = zpp::bits::protocol<zpp::bits::pb{}>;`)
-auto serialize(const example &) -> zpp::bits::protocol<zpp::bits::pb{}>;
 ```
 
 To reserve fields:
@@ -1147,8 +1136,6 @@ struct example
 {
     zpp::bits::pb_field<zpp::bits::vint32_t, 20> i; // field number == 20
     zpp::bits::pb_field<zpp::bits::vsint32_t, 30> j; // field number == 30
-
-    using serialize = zpp::bits::pb_protocol;
 };
 ```
 Accessing the value behind the field is often transparent however if explicitly needed
@@ -1161,10 +1148,9 @@ struct example
     zpp::bits::vint32_t i; // field number == 20
     zpp::bits::vsint32_t j; // field number == 30
 
-    using serialize = zpp::bits::protocol<
-        zpp::bits::pb{
-            zpp::bits::pb_map<1, 20>{}, // Map first member to field number 20.
-            zpp::bits::pb_map<2, 30>{}}>; // Map second member to field number 30.
+    using pb_options = std::tuple<
+            zpp::bits::pb_map<1, 20>, // Map first member to field number 20.
+            zpp::bits::pb_map<2, 30>>; // Map second member to field number 30.
 };
 ```
 
@@ -1176,23 +1162,11 @@ struct example
 };
 ```
 
-Like with `zpp::bits::members`, for when it is required, you may specify the number of members
-in the protocol field with `zpp::bits::pb_members<N>`:
+You can specify the number of members with `zpp::bits::members<N>` when required:
 ```cpp
 struct example
 {
-    using serialize = zpp::bits::pb_members<1>; // 1 member.
-
-    zpp::bits::vint32_t i; // field number == 1
-};
-```
-
-The full version of the above involves passing the number of members
-as the second parameter to the protocol:
-```cpp
-struct example
-{
-    using serialize = zpp::bits::protocol<zpp::bits::pb{}, 1>; // 1 member.
+    using serialize = zpp::bits::members<1>; // 1 member.
 
     zpp::bits::vint32_t i; // field number == 1
 };
@@ -1205,9 +1179,7 @@ struct nested_example
     example nested; // field number == 1
 };
 
-auto serialize(const nested_example &) -> zpp::bits::pb_protocol;
-
-static_assert(zpp::bits::to_bytes<zpp::bits::unsized_t<nested_example>{
+static_assert(zpp::bits::to_bytes<zpp::bits::protobuf{},zpp::bits::unsized_t<nested_example>{
                   {.nested = example{150}}}>() == "0a03089601"_decode_hex);
 ```
 
@@ -1215,8 +1187,6 @@ Repeated fields are of the form of owning containers:
 ```cpp
 struct repeating
 {
-    using serialize = zpp::bits::pb_protocol;
-
     std::vector<zpp::bits::vint32_t> integers; // field number == 1
     std::string characters; // field number == 2
     std::vector<example> examples; // repeating examples, field number == 3
@@ -1287,9 +1257,6 @@ struct address_book
     std::vector<person> people; // = 1
 };
 
-auto serialize(const person &) -> zpp::bits::pb_protocol;
-auto serialize(const person::phone_number &) -> zpp::bits::pb_protocol;
-auto serialize(const address_book &) -> zpp::bits::pb_protocol;
 ```
 
 Derserializing a message that was originally serialized with python:
@@ -1335,7 +1302,7 @@ constexpr auto data =
 static_assert(data.size() == 45);
 
 person p;
-zpp::bits::in{data, zpp::bits::no_size{}}(p).or_throw();
+zpp::bits::in{data, zpp::bits::no_size{}, zpp::bits::protobuf}(p).or_throw();
 
 // p.name == "John Doe"
 // p.id == 1234

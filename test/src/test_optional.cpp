@@ -56,4 +56,13 @@ TEST(optional, nullopt)
     EXPECT_FALSE(o.has_value());
 }
 
+struct persion 
+{
+    std::string name;
+    uint32_t age;
+    std::optional<std::string> address;
+};
+
+static_assert(zpp::bits::number_of_members<persion>() == 3, "number of memebers deos not match declared");
+
 } // namespace test_optional
